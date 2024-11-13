@@ -1,18 +1,22 @@
 name: Hello World
+
 on:
   pull_request:
-    - types: [opened]
+    types: [opened]
+
 jobs:
   startup:
-    name: Run startup script
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Starting the workflow..."
+
   build:
     name: Here is my build task
     runs-on: ubuntu-latest
     needs: startup
     steps:
       - run: echo "hello world"
-  steps:
-    - run: gh pr comment $PR_URL --body "Thanks for the pr. We will review it shortly."
-      env: 
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PR_URL: ${{github.event.pull_request.html_url}}
+      - run: gh pr comment $PR_URL --body "Thanks for the PR. We will review it shortly."
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
