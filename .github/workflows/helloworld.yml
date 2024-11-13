@@ -15,6 +15,7 @@ jobs:
 
   main:
     needs: startup
+    runs-on: ubuntu-latest  # Adding runs-on to specify the environment
     steps:
       - run: echo "hello world"
       - run: gh pr comment $PR_URL --body "Thanks for the pr. We will review it shortly."
