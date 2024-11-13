@@ -1,9 +1,7 @@
 name: Hello World
-
 on:
   pull_request:
     types: [opened]
-
 jobs:
   startup:
     runs-on: ubuntu-latest
@@ -16,7 +14,7 @@ jobs:
     needs: startup
     steps:
       - run: echo "hello world"
-      - run: gh pr comment $PR_URL --body "Thanks for the PR. We will review it shortly."
+      - run: gh pr comment $PR_URL --body "Thanks for the pr. We will review it shortly."
         env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
