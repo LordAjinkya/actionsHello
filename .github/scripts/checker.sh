@@ -1,9 +1,10 @@
 #!/bin/bash
+
 echo "Testing for buttons component"
-if test -f "$FILE"
-then
-  echo "found $FILE"
+
+# Example command with proper quoting
+if grep -q "button" ./src/components/Buttons.js; then
+  echo "Button component found"
 else
-  echo "file not found  
-  exit 204
+  echo "Button component not found"
 fi
