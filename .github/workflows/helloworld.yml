@@ -17,17 +17,26 @@ jobs:
     needs: startup
     runs-on: ubuntu-latest  # Adding runs-on to specify the environment
     steps:
-      - name: comment on PR
+      - name: Comment on PR
+        run: echo "Adding a comment on PR"  # Dummy command; you can add another comment if needed
+        
       - run: echo "hello world"
-      - run: gh pr comment $PR_URL --body "Thanks for the pr. We will review it shortly."
+      
+      - name: Post comment on PR
+        run: gh pr comment $PR_URL --body "Thanks for the pr. We will review it shortly."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
-      - name: checkout code
-        uses: actions/checkout@2
-        with: 
+      
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
           fetch-depth: 0
-      - name: check for buttons
-      - run: ./.github/scripts/checker.sh
-      - env:
+
+      - name: Check for buttons
+        run: ./.github/scripts/checker.sh  # Assuming the script exists and is executable
+
+      - name: Set environment variable
+        run: echo "Setting FILE environment variable"  # Optional command, just for clarity
+        env:
           FILE: ./src/components/Buttons.js
